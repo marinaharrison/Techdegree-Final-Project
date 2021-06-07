@@ -1,3 +1,4 @@
+//import components
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -13,7 +14,8 @@ import UserSignIn from "./components/UserSignIn";
 import UserSignOut from "./components/UserSignOut";
 import DeleteCourse from "./components/DeleteCourse";
 
-const UserSignUpWithContext = withContext(UserSignUp); //this connects the user sign up component to context -> usersignup is now a consuming component that's subscribed to all context changes
+//connects components with context and the changes that come along with context 
+const UserSignUpWithContext = withContext(UserSignUp); 
 const UserSignInWithContext = withContext(UserSignIn);
 const HeaderWithContext = withContext(Header);
 const CreateCourseWithContext = withContext(CreateCourse);
@@ -22,6 +24,7 @@ const UserSignOutWithContext = withContext(UserSignOut);
 const CourseDetailWithContext = withContext(CourseDetail);
 const DeleteCourseWithContext = withContext(DeleteCourse);
 
+//routes to the components!
 export default () => (
   <Router>
     <div>
