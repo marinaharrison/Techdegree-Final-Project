@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Axios from 'axios';
 
+//This componenet displays the details of each individual course
 class CourseDetail extends Component {
     state = {
         course: {},
@@ -17,6 +18,7 @@ class CourseDetail extends Component {
       console.log(context.authenticatedUser);
     }
 
+    //Uses a helper function to get the individual course from the API
     getCourse = async function(id = this.props.match.params.id){
       await Axios.get(`http://localhost:5000/api/courses/${id}`)
       .then( response => {
@@ -29,6 +31,7 @@ class CourseDetail extends Component {
       console.log(this.state.owner);
     }
 
+    //Renders the component to the page according to the mockup
     render() {
         const { context } = this.props;
         const { course, id, owner } = this.state;
