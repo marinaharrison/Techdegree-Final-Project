@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import withContext from "./Context";
 import PrivateRoute from "./PrivateRoute";
 import Courses from "./components/Courses";
@@ -15,7 +15,7 @@ import DeleteCourse from "./components/DeleteCourse";
 
 const UserSignUpWithContext = withContext(UserSignUp); //this connects the user sign up component to context -> usersignup is now a consuming component that's subscribed to all context changes
 const UserSignInWithContext = withContext(UserSignIn);
-const HeaderWithContext = withContext(Header);
+// const HeaderWithContext = withContext(Header);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const UserSignOutWithContext = withContext(UserSignOut);
@@ -25,7 +25,7 @@ const DeleteCourseWithContext = withContext(DeleteCourse);
 export default () => (
   <Router>
     <div>
-    <HeaderWithContext />
+    {/* <HeaderWithContext /> */}
       <Switch>
         <Route exact path="/" component={Courses} />
         <PrivateRoute exact path="/courses/create"  component={CreateCourseWithContext} />
