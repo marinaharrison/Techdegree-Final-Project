@@ -3,6 +3,7 @@ import Form from "./Form";
 import ReactMarkdown from "react-markdown";
 const Axios = require("axios");
 
+//This component allows authenticated users to delete a course
 export default class DeleteCourse extends Component {
   state = {
     owner: {},
@@ -18,6 +19,7 @@ export default class DeleteCourse extends Component {
     });
   }
   
+  //This helper function will communicate with the API 
   getCourse = async function(id) {
     await Axios.get(`http://localhost:5000/api/courses/${id}`)
       .then(response => {
@@ -33,7 +35,7 @@ export default class DeleteCourse extends Component {
       });
   };
 
-  //renders details for the course
+  //renders details for the course according to the mockup
   render() {
     const { course, owner, errors } = this.state;
     return (
