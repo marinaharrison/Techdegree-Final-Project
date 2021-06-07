@@ -1,124 +1,53 @@
-import React, { Component } from "react";
-import Form from "./Form";
-import ReactMarkdown from "react-markdown";
-const Axios = require("axios");
+import React from 'react';
 
-export default class DeleteCourse extends Component {
-  state = {
-    owner: {},
-    errors: [],
-    user: this.props.context.authenticatedUser || null,
-    id: this.props.match.params.id,
-    course: {}
-  };
+export default (props) => {
+  const {
+    cancel,
+    errors,
+    submit,
+    submitButtonText,
+    elements,
+  } = props;
 
-  async componentDidMount() {
-    await this.getCourse(this.state.id).catch(err => {
-      console.log(err);
-    });
+  function handleSubmit(event) {
+    event.preventDefault();
+    submit();
   }
-  
-  getCourse = async function(id) {
-    await Axios.get(`http://localhost:5000/api/courses/${id}`)
-      .then(response => {
-        this.setState({
-          course: response.data,
-          owner: response.data.owner
-        });
-        // console.log(course);
-      })
-      .catch(err => {
-        console.error(err);
-        this.props.history.push("/notfound");
-      });
-  };
 
-  //renders details for the course
-  render() {
-    const { course, owner, errors } = this.state;
-    return (
-      <div className="wrap">
-        <h3>Delete Course: {course.title}?</h3>
-        <Form
-          cancel={this.cancel}
-          errors={errors}
-          submit={this.submit}
-          submitButtonText="Delete Course"
-          elements={() => (
-            <div className="main--flex">
-              <React.Fragment>
-                <div>
-                  <h3 className="course--detail--title">Course</h3>
-                  <h4 className="course--name">{course.title}</h4>
-                  <p>{`By ${owner.firstName} ${owner.lastName}`}</p>
-                  <ReactMarkdown>{course.description}</ReactMarkdown>
-                </div>
-              </React.Fragment>
-              <React.Fragment>
-                <div>
-                  <h3 className="course--detail--title">Estimated Time</h3>
-                  <p>{course.estimatedTime}</p>
+  function handleCancel(event) {
+    event.preventDefault();
+    cancel();
+  }
 
-                  <h3 className="course--detail--title">Materials Needed</h3>
-                  <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
-                </div>
-              </React.Fragment>
-            </div>
-          )}
-        />
+  return (
+    <div>
+      <ErrorsDisplay errors={errors} />
+      <form onSubmit={handleSubmit}>
+        {elements()}
+        <div className="pad-bottom">
+          <button className="button" type="submit">{submitButtonText}</button>
+          <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function ErrorsDisplay({ errors }) {
+  let errorsDisplay = null;
+
+  if (errors.length) {
+    errorsDisplay = (
+      <div className="validation--errors">
+        <h2 className="validation--errors--label">Validation errors</h2>
+        <div>
+          <ul>
+            {errors.map((error, i) => <li key={i}>{error}</li>)}
+          </ul>
+        </div>
       </div>
     );
   }
 
-  change = e => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    this.setState(() => {
-      return {
-        [name]: value
-      };
-    });
-  };
-
-  submit = () => {
-    const { context } = this.props;
-    const { authenticatedUser } = context;
-    const userId = authenticatedUser.userId;
-    const {
-      title,
-      description,
-      estimatedTime,
-      materialsNeeded,
-      id
-    } = this.state;
-
-    const course = {
-      title,
-      description,
-      estimatedTime,
-      materialsNeeded,
-      id,
-      userId
-    };
-    context.data
-      .deleteCourse(
-        id,
-        authenticatedUser.emailAddress,
-        authenticatedUser.password
-      )
-      .then(errors => {
-        if (errors.length) {
-          this.setState({ errors });
-        } else {
-          console.log("course deleted");
-          this.props.history.push("/");
-        }
-      });
-  };
-
-  cancel = () => {
-    const { id } = this.state;
-    this.props.history.push(`/courses/${id}`);
-  };
+  return errorsDisplay;
 }
