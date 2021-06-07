@@ -1,5 +1,6 @@
 import React from 'react';
 
+//provides a basic form component that changes depending on what the page requires
 export default (props) => {
   const {
     cancel,
@@ -19,6 +20,7 @@ export default (props) => {
     cancel();
   }
 
+  //ErrorDisplay will display validation errors on form submission
   return (
     <div>
       <ErrorsDisplay errors={errors} />
