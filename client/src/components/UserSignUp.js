@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
+//Component creates a sign up page for users that are not authenticated
 class UserSignUp extends Component {
     state = {
         firstName: '',
@@ -19,6 +20,7 @@ class UserSignUp extends Component {
               errors
           }= this.state;
 
+          //renders according to the mockup
        return(
         <div className="form--centered">
         <div className="grid-33 centered signin">
@@ -95,7 +97,8 @@ class UserSignUp extends Component {
               emailAddress,
               password
           }
-
+          
+          // Catches and displays errors
           context.data.createUser(user)
           .then(errors => {
               if (errors.length) {
