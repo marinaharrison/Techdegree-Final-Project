@@ -1,6 +1,5 @@
-/**
- * Adapted from Treehouse React Authentication Workshop
- */
+// Adapted from Treehouse React Authentication Workshop
+ 
  import React, { useEffect } from 'react';
  import { Redirect } from 'react-router-dom';
  const UserSignOut = ({context}) => {
