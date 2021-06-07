@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink} from 'react-router-dom';
 
+//This component holds the header that displays the sign in, sign out, sign up links
+//Shown on every page
  export default class Header extends React.PureComponent {
   render(){
     const { context } = this.props;
