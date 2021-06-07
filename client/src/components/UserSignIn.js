@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
+//Components creates the user sign page in whenever a element on the page requires a user
 class UserSignIn extends Component {
     state = {
         emailAddress: '',
@@ -16,6 +17,7 @@ class UserSignIn extends Component {
           errors
         } = this.state;
 
+        //Renders the component according to the markup
       return(
         <div className="form--centered">
         <h2>Sign In</h2>
@@ -64,6 +66,7 @@ change = e => {
     })
 }
 
+//Checks for authenticated user
 submit = () => {
     const { context } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } };
