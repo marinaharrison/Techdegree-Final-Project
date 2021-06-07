@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Form from './Form';
 
+//Creates courses to be added to the index only if there is an authenticated user
 class CreateCourse extends Component {
   state = {
     title: '',
@@ -21,6 +22,7 @@ class CreateCourse extends Component {
       errors
     } = this.state;
 
+    //Renders a form according to the mockup
     return (
       <div className="wrap">
         <h2>Create Course</h2>
@@ -89,7 +91,7 @@ class CreateCourse extends Component {
     });
   };
 
-  //Below will allow authenticated users to create course
+  //Below will allow only authenticated users to create course
   submit = () => {
     const { context } = this.props;
     const { authenticatedUser } = context;
@@ -105,6 +107,7 @@ class CreateCourse extends Component {
 
     console.log(this.state.errors);
     
+    //Below will catch errors and display validations
     context.data
       .createCourse(
         course,
