@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Form from './Form';
 import Axios from 'axios';
 
+//Component updates courses only if the authenticated user AND the owner match the userID
 export default class UpdateCourse extends Component {
     state = {
         title: '',
@@ -18,7 +19,8 @@ export default class UpdateCourse extends Component {
           console.log(err);
         });
       }
-
+      
+      //helper function grabs course from the API
       getCourse = async function(id = this.props.match.params.id) {
         await Axios.get(`http://localhost:5000/api/courses/${id}`)
         .then(response => {
@@ -113,6 +115,7 @@ change = e => {
     })
 }
 
+//authenticates user
 submit = () => {
     const { context } = this.props;
     const { authenticatedUser } = context;
