@@ -153,6 +153,6 @@ submit = () => {
     }
 
     cancel = () => {
-        this.props.history.push('/');
+        this.props.history.push(`/courses/${this.state.id}`);
     }
 }
