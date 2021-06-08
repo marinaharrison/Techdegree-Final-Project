@@ -4,8 +4,10 @@ import Data from './Data';
 
 const Context = React.createContext(); 
 
+//Context allows changes to be made and passed through as props throughout the components
 export class Provider extends Component {
 
+  //will either remember the authenticated user or identify a non-auth user
   state = {
     authenticatedUser: Cookies.getJSON('authenticatedUser') || null
   };
