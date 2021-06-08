@@ -50,6 +50,7 @@ export default class UpdateCourse extends Component {
             errors
           } = this.state
       
+      //renders according to the mockup
       return(
         <div>
         <div className="wrap">
@@ -151,7 +152,7 @@ submit = () => {
         }
     })
     }
-
+//Redirects back to the course that was meant to be updated
     cancel = () => {
         this.props.history.push(`/courses/${this.state.id}`);
     }
