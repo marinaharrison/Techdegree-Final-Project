@@ -92,7 +92,7 @@ export default class DeleteCourse extends Component {
       description,
       estimatedTime,
       materialsNeeded,
-      id
+      id,
     } = this.state;
 
     const course = {
@@ -103,6 +103,7 @@ export default class DeleteCourse extends Component {
       id,
       userId
     };
+
     context.data
       .deleteCourse(
         id,

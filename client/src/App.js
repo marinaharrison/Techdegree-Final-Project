@@ -25,7 +25,7 @@ const CourseDetailWithContext = withContext(CourseDetail);
 const DeleteCourseWithContext = withContext(DeleteCourse);
 
 //routes to the components!
-export default () => (
+const routes = () => (
   <Router>
     <div>
     <HeaderWithContext />
@@ -42,3 +42,5 @@ export default () => (
     </div>
   </Router>
 );
+
+export default routes
