@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { Consumer } from './Context';
 
 //This component make private routes only for authenticated users to use for update, create, and delete course
-export default ({ component: Component, ...rest }) => {
+const privateRoute = ({ component: Component, ...rest }) => {
   return (
     <Consumer>
     {context => (
@@ -23,3 +23,5 @@ export default ({ component: Component, ...rest }) => {
   </Consumer>
 );
 };
+
+export default privateRoute
