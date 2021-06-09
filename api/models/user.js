@@ -45,22 +45,26 @@ module.exports = (sequelize) => {
       }   
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING,  
       allowNull: false,
       set(val) {
-        if(val){
-        const hashedPassword = bcrypt.hashSync(val, 10);
-        this.setDataValue("password", hashedPassword);
+        if ( val ) {
+          const hashedPassword = bcrypt.hashSync(val, 10);
+          this.setDataValue('password', hashedPassword);
         }
       },
       validate: {
         notNull: {
-          msg: "A password is required"
+          msg: 'A password is required'
         },
         notEmpty: {
-          msg: "Please provide a password"
-        }
+          msg: 'Please provide a password'
+        },
       }
+    },
+    confirmedPassword: {
+      type: DataTypes.VIRTUAL,
+      allowNull: true,
     }
   }, { sequelize });
 

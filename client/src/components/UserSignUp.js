@@ -9,6 +9,7 @@ class UserSignUp extends Component {
         lastName:'',
         emailAddress: '',
         password: '',
+        confirmedPassword: '',
         errors: []
       }
       render() {
@@ -17,6 +18,7 @@ class UserSignUp extends Component {
               lastName,
               emailAddress,
               password,
+              confirmedPassword,
               errors
           }= this.state;
 
@@ -61,10 +63,10 @@ class UserSignUp extends Component {
                   onChange={this.change} 
                   placeholder="Password" />
                 <input 
-                  id="confirmPassword" 
-                  name="confirmPassword"
+                  id="confirmedPassword" 
+                  name="confirmedPassword"
                   type="password"
-                  value={password} 
+                  value={confirmedPassword} 
                   onChange={this.change} 
                   placeholder="Confirm Password" />
               </React.Fragment>
@@ -94,7 +96,8 @@ class UserSignUp extends Component {
               firstName,
               lastName,
               emailAddress,
-              password
+              password,
+              confirmedPassword
           } = this.state;
 
           // Creates User
@@ -102,7 +105,8 @@ class UserSignUp extends Component {
               firstName,
               lastName,
               emailAddress,
-              password
+              password,
+              confirmedPassword
           }
           
           // Catches and displays errors
