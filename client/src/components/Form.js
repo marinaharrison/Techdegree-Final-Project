@@ -1,7 +1,7 @@
 import React from 'react';
 
 //provides a basic form component that changes depending on what the page requires
-export default (props) => {
+const form = (props) => {
   const {
     cancel,
     errors,
@@ -53,3 +53,5 @@ function ErrorsDisplay({ errors }) {
 
   return errorsDisplay;
 }
+
+export default form
