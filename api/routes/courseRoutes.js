@@ -94,9 +94,14 @@ router.put('/:id', authenticateUser, asyncHandler(async (req, res) => {
 //Send a DELETE request to delete a course
 router.delete('/:id', authenticateUser, asyncHandler(async (req, res, next) => {
       const course = await Course.findByPk(req.params.id);
+      const userId = req.currentUser.id;
       if (course) {
+        if (course.userId == userId) {
         await course.destroy(req.body);
         res.status(204).end();
+        } else {
+          res.status(403).end();
+        }
       } else {
         res.status(404).json({ message: "Hmm, we can't find that course" });
       }

@@ -86,23 +86,23 @@ export default class DeleteCourse extends Component {
   submit = () => {
     const { context } = this.props;
     const { authenticatedUser } = context;
-    const userId = authenticatedUser.userId;
+    // const userId = authenticatedUser.userId;
     const {
-      title,
-      description,
-      estimatedTime,
-      materialsNeeded,
+      // title,
+      // description,
+      // estimatedTime,
+      // materialsNeeded,
       id,
     } = this.state;
 
-    const course = {
-      title,
-      description,
-      estimatedTime,
-      materialsNeeded,
-      id,
-      userId
-    };
+    // const course = {
+    //   title,
+    //   description,
+    //   estimatedTime,
+    //   materialsNeeded,
+    //   id,
+    //   userId
+    // };
 
     context.data
       .deleteCourse(
